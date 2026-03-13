@@ -202,6 +202,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 [⬆ Back to Top](#lyyncodelyyn-bail)
 
-Made with ❤️ by Lyyncode
-
-Copy paste aja ke file `README.md` di repo lu. Nanti pas lu push codenya, update aja bagian yang perlu disesuaikan sama fitur spesifik yang lu tambahin di fork ini.
+Made with ❤️‍🔥 by Lyyncode
