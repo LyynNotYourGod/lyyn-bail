@@ -1,19 +1,7 @@
 {
-<<<<<<< HEAD
-  "name": "@lyynnotyourgod/lyyn-bail",
-  "version": "8.0.7-lyyn.0",
-  "description": "Lyyn Fork of Baileys - Websocket WhatsApp API for Node.js",
-=======
-<<<<<<< HEAD
-  "name": "@lyynnotyourgod/lyyn-bail",
-  "version": "8.0.7-lyyn.0",
-  "description": "Lyyn Fork of Baileys - Websocket WhatsApp API for Node.js",
-=======
-  "name": "@lyynnotyourgod/lyyn-baileys",
+  "name": "@lyyncode/lyyn-bail",
   "version": "8.0.8",
   "description": "Websocket Whatsapp API for Node.js",
->>>>>>> 1ebe1b0 (Upload: Fri Mar 13 16:50:30 WIB 2026)
->>>>>>> 520af5a (Upload: Fri Mar 13 16:54:38 WIB 2026)
   "keywords": [
     "whatsapp",
     "websocket",
@@ -22,29 +10,12 @@
     "baileys",
     "wabot",
     "proto",
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 520af5a (Upload: Fri Mar 13 16:54:38 WIB 2026)
-    "whatsapp-websocket",
-    "lyyn",
-    "lyynnotyourgod"
+    "whatsapp-websocket"
   ],
   "homepage": "https://github.com/LyynNotYourGod/lyyn-bail",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/LyynNotYourGod/lyyn-bail.git"
-<<<<<<< HEAD
-=======
-=======
-    "whatsapp-websocket"
-  ],
-  "homepage": "https://github.com/LyynNotYourGod/lyyn-baileys",
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/LyynNotYourGod/lyyn-baileys.git"
->>>>>>> 1ebe1b0 (Upload: Fri Mar 13 16:50:30 WIB 2026)
->>>>>>> 520af5a (Upload: Fri Mar 13 16:54:38 WIB 2026)
   },
   "license": "MIT",
   "author": "LyynNotYourGod",
@@ -68,15 +39,7 @@
     "@whiskeysockets/eslint-config": "github:whiskeysockets/eslint-config",
     "@cacheable/node-cache": "*",
     "gradient-string": "2.0.2",
-<<<<<<< HEAD
-    "@skycodee/libsignal": "*",
-=======
-<<<<<<< HEAD
-    "@skycodee/libsignal": "*",
-=======
     "@lyynnotyourgod/libsignal": "*",
->>>>>>> 1ebe1b0 (Upload: Fri Mar 13 16:50:30 WIB 2026)
->>>>>>> 520af5a (Upload: Fri Mar 13 16:54:38 WIB 2026)
     "moment-timezone": "*",
     "music-metadata": "*",
     "cache-manager": "*",
@@ -116,17 +79,6 @@
     "jimp": ">=0.16.0"
   },
   "peerDependenciesMeta": {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 520af5a (Upload: Fri Mar 13 16:54:38 WIB 2026)
-    "audio-decode": { "optional": true },
-    "chalk": { "optional": true },
-    "jimp": { "optional": true },
-    "link-preview-js": { "optional": true }
-<<<<<<< HEAD
-=======
-=======
     "audio-decode": {
       "optional": true
     },
@@ -137,8 +89,6 @@
     "link-preview-js": {
       "optional": true
     }
->>>>>>> 1ebe1b0 (Upload: Fri Mar 13 16:50:30 WIB 2026)
->>>>>>> 520af5a (Upload: Fri Mar 13 16:54:38 WIB 2026)
   },
   "packageManager": "yarn@1.22.19",
   "engines": {
@@ -148,18 +98,6 @@
     "lib": "lib"
   },
   "bugs": {
-<<<<<<< HEAD
     "url": "https://github.com/LyynNotYourGod/lyyn-bail/issues"
   }
 }
-=======
-<<<<<<< HEAD
-    "url": "https://github.com/LyynNotYourGod/lyyn-bail/issues"
-  }
-}
-=======
-    "url": "https://github.com/LyynNotYourGod/lyyn-baileys/issues"
-  }
-}
->>>>>>> 1ebe1b0 (Upload: Fri Mar 13 16:50:30 WIB 2026)
->>>>>>> 520af5a (Upload: Fri Mar 13 16:54:38 WIB 2026)
