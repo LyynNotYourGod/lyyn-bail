@@ -8,7 +8,7 @@
 
 [![npm](https://img.shields.io/npm/v/@lyyncode/lyyn-bail?style=for-the-badge&color=red)](https://www.npmjs.com/package/@lyyncode/lyyn-bail)
 [![license](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
-[![node](https://img.shields.io/badge/node-%3E%3D18-339933?style=for-the-badge&logo=nodedotjs)](https://nodejs.org/)
+[![node](https://img.shields.io/badge/node-%3E%3D20-339933?style=for-the-badge&logo=nodedotjs)](https://nodejs.org/)
 
 </div>
 
@@ -49,8 +49,7 @@ Fitur	Status
 Multi-Device	✅	
 Auto Reconnect	✅	
 Kirim Media	✅	
-Group Management	✅	
-Newsletter Auto-Follow	✅	
+Group Management	✅
 
 📝 Contoh Penggunaan
 
