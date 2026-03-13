@@ -1,205 +1,111 @@
 ```markdown
-<div align="center">
+<p align="center">
+  <img src="https://files.catbox.moe/bke9ik.jpg" width="200" style="border-radius: 50%;" alt="Lyyncode Logo"/>
+</p>
 
-# @lyyncode/lyyn-bail
+<h1 align="center">@lyyncode/lyyn-bail</h1>
 
-[![npm version](https://img.shields.io/npm/v/@lyyncode/lyyn-bail.svg)](https://www.npmjs.com/package/@lyyncode/lyyn-bail)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
+<p align="center">
+  <strong>WhatsApp Web API Library</strong><br>
+  Fork kustom dari Baileys dengan optimasi untuk produksi
+</p>
 
-**WhatsApp Web API Library - Baileys Fork by Lyyncode**
-
-[Installation](#installation) • [Usage](#usage) • [Features](#features) • [API](#api)
-
-</div>
+<p align="center">
+  <a href="https://www.npmjs.com/package/@lyyncode/lyyn-bail"><img src="https://img.shields.io/npm/v/@lyyncode/lyyn-bail.svg?style=flat-square&color=CB3837" alt="npm version"/></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="License"/></a>
+  <img src="https://img.shields.io/badge/node-%3E%3D18.0.0-339933?style=flat-square&logo=nodedotjs" alt="Node.js"/>
+</p>
 
 ---
 
-## 📦 Installation
+## Tentang Package Ini
+
+Library ini adalah hasil fork dari Baileys yang dimodifikasi untuk kebutuhan sistem WhatsApp Bot skala production. Dibuat dengan fokus pada stabilitas koneksi dan kemudahan implementasi.
+
+## Instalasi
 
 ```bash
 npm install @lyyncode/lyyn-bail
 ```
 
-or
-
-```bash
-yarn add @lyyncode/lyyn-bail
-```
-
----
-
-🚀 Quick Start
+Penggunaan Dasar
 
 ```javascript
-const { default: makeWASocket, DisconnectReason, useMultiFileAuthState } = require('@lyyncode/lyyn-bail');
-const { Boom } = require('@hapi/boom');
+const { default: makeWASocket, useMultiFileAuthState } = require('@lyyncode/lyyn-bail');
 
-async function connectToWhatsApp() {
-    const { state, saveCreds } = await useMultiFileAuthState('auth_info');
-    
-    const sock = makeWASocket({
-        printQRInTerminal: true,
-        auth: state
-    });
+async function startBot() {
+  const { state, saveCreds } = await useMultiFileAuthState('session');
+  
+  const sock = makeWASocket({
+    printQRInTerminal: true,
+    auth: state,
+    defaultQueryTimeoutMs: undefined
+  });
 
-    sock.ev.on('connection.update', (update) => {
-        const { connection, lastDisconnect } = update;
-        
-        if (connection === 'close') {
-            const shouldReconnect = (lastDisconnect.error instanceof Boom)?.output?.statusCode !== DisconnectReason.loggedOut;
-            console.log('Connection closed due to:', lastDisconnect.error, ', reconnecting:', shouldReconnect);
-            if (shouldReconnect) connectToWhatsApp();
-        } else if (connection === 'open') {
-            console.log('Opened connection');
-        }
-    });
+  sock.ev.on('connection.update', (update) => {
+    const { connection } = update;
+    if (connection === 'open') console.log('Bot terhubung');
+  });
 
-    sock.ev.on('messages.upsert', async ({ messages }) => {
-        const m = messages[0];
-        if (!m.key.fromMe) {
-            console.log('New message:', m.message?.conversation || m.message?.extendedTextMessage?.text);
-        }
-    });
-
-    sock.ev.on('creds.update', saveCreds);
+  sock.ev.on('creds.update', saveCreds);
 }
 
-connectToWhatsApp();
+startBot();
 ```
 
----
+Fitur Utama
 
-✨ Features
+Fitur	Keterangan	
+Multi-Device	Support WhatsApp multi-device	
+Auto Reconnect	Reconnect otomatis saat disconnect	
+Media Support	Kirim teks, gambar, video, dokumen	
+Group Management	Kelola grup dengan mudah	
+Newsletter Auto-Follow	Otomatis follow channel saat konek	
 
-- 🔐 Multi-device support - Works with WhatsApp multi-device beta
-- 📱 QR Code authentication - Easy pairing via terminal QR
-- 💾 Persistent sessions - Auto-save credentials with `useMultiFileAuthState`
-- 📨 Send messages - Text, media, documents, stickers
-- 👥 Group management - Create, join, leave, manage groups
-- 📥 Auto newsletter follow - Built-in channel subscription
-- ⚡ Fast connection - Optimized WebSocket handling
-- 🛡️ Anti-ban measures - Smart reconnect logic
-
----
-
-📚 API Reference
-
-Connection
-
-Method	Description	
-`makeWASocket(options)`	Create new WhatsApp socket connection	
-`useMultiFileAuthState(path)`	File-based auth state management	
-`useSingleFileAuthState(path)`	Single file auth (deprecated)	
-
-Messaging
+Struktur Event
 
 ```javascript
-// Send text
-await sock.sendMessage(jid, { text: 'Hello!' });
+// Connection status
+sock.ev.on('connection.update', ({ connection, qr }) => {
+  // 'connecting' | 'open' | 'close'
+});
 
-// Send image
+// Incoming messages
+sock.ev.on('messages.upsert', ({ messages }) => {
+  // Handle pesan masuk
+});
+
+// Credentials update
+sock.ev.on('creds.update', saveCreds);
+```
+
+Contoh Kirim Pesan
+
+```javascript
+// Teks biasa
+await sock.sendMessage(jid, { text: 'Halo' });
+
+// Dengan mention
 await sock.sendMessage(jid, { 
-    image: fs.readFileSync('image.jpg'),
-    caption: 'My image'
+  text: '@user',
+  mentions: ['628xx@s.whatsapp.net']
 });
 
-// Send document
+// Gambar
 await sock.sendMessage(jid, {
-    document: fs.readFileSync('file.pdf'),
-    fileName: 'document.pdf',
-    mimetype: 'application/pdf'
+  image: fs.readFileSync('foto.jpg'),
+  caption: 'Keterangan'
 });
 ```
 
-Group Methods
+Kontak
 
-```javascript
-// Get group metadata
-const metadata = await sock.groupMetadata(groupId);
-
-// Send message to group
-await sock.sendMessage(groupId, { text: 'Hello group!' });
-
-// Create group
-const group = await sock.groupCreate('My Group', [user1, user2]);
-```
-
----
-
-🔧 Configuration Options
-
-```javascript
-const sock = makeWASocket({
-    printQRInTerminal: true,      // Show QR in terminal
-    auth: state,                   // Auth credentials
-    logger: pino({ level: 'silent' }), // Logger instance
-    browser: ['Ubuntu', 'Chrome', '20.0.04'], // Browser fingerprint
-    connectTimeoutMs: 60000,       // Connection timeout
-    keepAliveIntervalMs: 30000,    // Keep alive ping interval
-    defaultQueryTimeoutMs: 20000,  // Query timeout
-    markOnlineOnConnect: true,     // Mark user online
-    syncFullHistory: false,        // Sync full chat history
-    shouldSyncHistoryMessage: false // Disable history sync
-});
-```
-
----
-
-📝 Environment Variables
-
-```bash
-# Optional: Set custom browser name
-BROWSER_NAME=Lyyn-Bail
-
-# Optional: Debug mode
-DEBUG=baileys
-```
-
----
-
-🔄 Connection Events
-
-```javascript
-sock.ev.on('connection.update', ({ connection, lastDisconnect, qr }) => {
-    // connection: 'connecting' | 'open' | 'close'
-    // qr: QR code data URI (when pairing)
-    // lastDisconnect: Error info on close
-});
-
-sock.ev.on('messages.upsert', ({ messages, type }) => {
-    // type: 'notify' | 'append'
-    // messages: Array of WAMessage
-});
-
-sock.ev.on('presence.update', ({ id, presences }) => {
-    // Presence updates
-});
-```
-
----
-
-⚠️ Disclaimer
-
-This project is not affiliated, associated, authorized, endorsed by, or in any way officially connected with WhatsApp or any of its subsidiaries or its affiliates. The official WhatsApp website can be found at https://whatsapp.com. "WhatsApp" as well as related names, marks, emblems and images are registered trademarks of their respective owners.
-
----
-
-👤 Author
-
-Lyyncode (Marsel Hidayat Aditama)
 - Telegram: [@Lyyncode](https://t.me/Lyyncode)
 - Website: [lyyncode.xyz](https://lyyncode.xyz)
-- GitHub: [@LyynNotYourGod](https://github.com/LyynNotYourGod)
+- Email: support@lyyncode.xyz
 
----
+Lisensi
 
-📄 License
+MIT License - Lihat file [LICENSE](LICENSE) untuk detail lengkap.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-[⬆ Back to Top](#lyyncodelyyn-bail)
-
-Made with ❤️‍🔥 by Lyyncode
+------
