@@ -1,6 +1,6 @@
 {
   "name": "@lyyncode/lyyn-bail",
-  "version": "9.0.6",
+  "version": "9.0.7",
   "description": "Websocket Whatsapp API for Node.js",
   "keywords": [
     "whatsapp",
@@ -47,7 +47,7 @@
     "@whiskeysockets/eslint-config": "github:whiskeysockets/eslint-config",
     "@cacheable/node-cache": "*",
     "gradient-string": "2.0.2",
-    "@lyyncode/libsignal": "*",
+    "@skycodee/libsignal": "*",
     "moment-timezone": "*",
     "music-metadata": "*",
     "cache-manager": "*",
