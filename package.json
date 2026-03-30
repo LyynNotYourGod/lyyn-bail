@@ -1,6 +1,6 @@
 {
   "name": "@lyyncode/lyyn-bail",
-  "version": "9.0.5",
+  "version": "9.0.6",
   "description": "Websocket Whatsapp API for Node.js",
   "keywords": [
     "whatsapp",
