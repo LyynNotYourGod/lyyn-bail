@@ -1,6 +1,6 @@
 {
   "name": "@lyyncode/lyyn-bail",
-  "version": "9.0.7",
+  "version": "9.0.8",
   "description": "Websocket Whatsapp API for Node.js",
   "keywords": [
     "whatsapp",
@@ -13,20 +13,13 @@
     "whatsapp-websocket"
   ],
   "homepage": "https://github.com/LyynNotYourGod/lyyn-bail",
-  "bugs": {
-    "url": "https://github.com/LyynNotYourGod/lyyn-bail/issues"
-  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/LyynNotYourGod/lyyn-bail.git"
   },
   "license": "MIT",
-  "author": "LyynNotYourGod",
-  "type": "module",
+  "author": "skycodee",
   "main": "./lib/index.js",
-  "directories": {
-    "lib": "lib"
-  },
   "files": [
     "lib/*",
     "WAProto/*"
@@ -43,7 +36,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "chalk": "^5.3.0",
     "@whiskeysockets/eslint-config": "github:whiskeysockets/eslint-config",
     "@cacheable/node-cache": "*",
     "gradient-string": "2.0.2",
@@ -90,9 +82,7 @@
     "audio-decode": {
       "optional": true
     },
-    "chalk": {
-      "optional": true
-    },
+    "chalk": { "optional": true }, 
     "jimp": {
       "optional": true
     },
@@ -100,8 +90,14 @@
       "optional": true
     }
   },
+  "packageManager": "yarn@1.22.19",
   "engines": {
     "node": ">=20.0.0"
   },
-  "packageManager": "yarn@1.22.19"
+  "directories": {
+    "lib": "lib"
+  },
+  "bugs": {
+    "url": "https://github.com/LyynNotYourGod/lyyn-bail/issues"
+  }
 }
